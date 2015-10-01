@@ -1,0 +1,27 @@
+{
+  "name": "indexup",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Adrian C Shum <adrian@cshum.com> (https://github.com/cshum)",
+  "main": "lib/index.js",
+  "dependencies": {
+    "ginga": "^1.1.1",
+    "level-transactions": "^1.4.3",
+    "levelup": "^1.2.1",
+    "sublevelup": "^3.1.1",
+    "xtend": "^4.0.0"
+  },
+  "devDependencies": {
+    "standard": "^5.1.0",
+    "tape": "^4.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cshum/indexup.git"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/cshum/indexup",
+  "scripts": {
+    "test": "standard && node test/test.js"
+  }
+}
