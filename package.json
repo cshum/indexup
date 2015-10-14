@@ -5,6 +5,7 @@
   "author": "Adrian C Shum <adrian@cshum.com> (https://github.com/cshum)",
   "main": "lib/index.js",
   "dependencies": {
+    "bytewise-core": "^1.2.3",
     "ginga": "^1.1.1",
     "level-transactions": "^1.4.3",
     "levelup": "^1.2.1",
