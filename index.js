@@ -20,6 +20,13 @@ function IndexUP (dir, opts) {
   this.store = db.sublevel('st')
   this.indexes = db.sublevel('ix')
 
+  var open = this.open.bind(this)
+  this.open = thunky(function (cb) {
+    process.nextTick(function () {
+      open(cb)
+    })
+  })
+
   EventEmitter.call(this)
   this.setMaxListeners(Infinity)
 }
@@ -46,7 +53,6 @@ inherits(IndexUP, EventEmitter)
 IndexUP.fn = ginga(IndexUP.prototype)
 
 IndexUP.fn.define('open')
-IndexUP.fn.open = thunky(IndexUP.fn.open)
 
 function open (ctx, next) {
   this.open(function (err) {
