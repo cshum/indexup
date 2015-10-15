@@ -10,6 +10,7 @@
     "level-transactions": "^1.4.3",
     "levelup": "^1.2.1",
     "sublevelup": "^3.1.1",
+    "thunky": "^0.1.0",
     "xtend": "^4.0.0"
   },
   "devDependencies": {

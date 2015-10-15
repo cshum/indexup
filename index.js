@@ -6,6 +6,7 @@ var ginga = require('ginga')
 var xtend = require('xtend')
 var inherits = require('util').inherits
 var EventEmitter = require('events').EventEmitter
+var thunky = require('thunky')
 
 function IndexUP (dir, opts) {
   if (!(this instanceof IndexUP)) return new IndexUP(dir, opts)
@@ -44,11 +45,21 @@ function encode (source) {
 inherits(IndexUP, EventEmitter)
 IndexUP.fn = ginga(IndexUP.prototype)
 
+IndexUP.fn.define('open')
+IndexUP.fn.open = thunky(IndexUP.fn.open)
+
+function open (ctx, next) {
+  this.open(function (err) {
+    if (err) return next(err)
+    next()
+  })
+}
+
 IndexUP.fn.transaction = function (opts) {
   return transaction(this.db, opts)
 }
 
-IndexUP.fn.define('get', params('key', 'options'), function (ctx, done) {
+IndexUP.fn.define('get', params('key', 'options'), open, function (ctx, done) {
   ctx.options = xtend(this.options, ctx.options)
   var prefix = (ctx.options.index || '') + '!'
   var key = prefix + encode(ctx.key)
